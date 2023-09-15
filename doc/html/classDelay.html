@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -101,13 +101,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f4174ea67c6ee7b01e31fc9695337e0"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a9f4174ea67c6ee7b01e31fc9695337e0">getInterval</a> ()</td></tr>
 <tr class="memdesc:a9f4174ea67c6ee7b01e31fc9695337e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the configured delay interval of the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> obj.  <a href="classDelay.html#a9f4174ea67c6ee7b01e31fc9695337e0">More...</a><br /></td></tr>
 <tr class="separator:a9f4174ea67c6ee7b01e31fc9695337e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0babe9750112eb23328d803db1b365e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a0babe9750112eb23328d803db1b365e1">setCallback</a> (<a class="el" href="Delay_8h.html#aba4e07ee7019198e04cb6e76c1dcc84f">CallbackFunction</a> fn)</td></tr>
+<tr class="memitem:a0babe9750112eb23328d803db1b365e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a0babe9750112eb23328d803db1b365e1">setCallback</a> (CallbackFunction fn)</td></tr>
 <tr class="memdesc:a0babe9750112eb23328d803db1b365e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback function for the timer.  <a href="classDelay.html#a0babe9750112eb23328d803db1b365e1">More...</a><br /></td></tr>
 <tr class="separator:a0babe9750112eb23328d803db1b365e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad38911fd8076fc9da178b498d1e1c81c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#ad38911fd8076fc9da178b498d1e1c81c">hasCallback</a> ()</td></tr>
 <tr class="memdesc:ad38911fd8076fc9da178b498d1e1c81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a callback function is set.  <a href="classDelay.html#ad38911fd8076fc9da178b498d1e1c81c">More...</a><br /></td></tr>
 <tr class="separator:ad38911fd8076fc9da178b498d1e1c81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89110f2d0b73b811e07af03d7f9b3e2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Delay_8h.html#aba4e07ee7019198e04cb6e76c1dcc84f">CallbackFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a89110f2d0b73b811e07af03d7f9b3e2e">getCallback</a> ()</td></tr>
+<tr class="memitem:a89110f2d0b73b811e07af03d7f9b3e2e"><td class="memItemLeft" align="right" valign="top">CallbackFunction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a89110f2d0b73b811e07af03d7f9b3e2e">getCallback</a> ()</td></tr>
 <tr class="memdesc:a89110f2d0b73b811e07af03d7f9b3e2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the current callback function.  <a href="classDelay.html#a89110f2d0b73b811e07af03d7f9b3e2e">More...</a><br /></td></tr>
 <tr class="separator:a89110f2d0b73b811e07af03d7f9b3e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5409eb69c0ef50fab1e33341a201a7a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a5409eb69c0ef50fab1e33341a201a7a9">execCallback</a> ()</td></tr>
@@ -296,7 +296,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Delay_8h.html#aba4e07ee7019198e04cb6e76c1dcc84f">CallbackFunction</a> Delay::getCallback </td>
+          <td class="memname">CallbackFunction Delay::getCallback </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -439,7 +439,7 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="keywordflow">if</span> (eventDelay.isDone()) {</div>
 <div class="line">  <span class="comment">// Short and quick code here...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassDelay_html"><div class="ttname"><a href="classDelay.html">Delay</a></div><div class="ttdoc">This class facilitates creating non-blocking delays and timeouts.</div><div class="ttdef"><b>Definition:</b> Delay.h:38</div></div>
+<div class="ttc" id="aclassDelay_html"><div class="ttname"><a href="classDelay.html">Delay</a></div><div class="ttdoc">This class facilitates creating non-blocking delays and timeouts.</div><div class="ttdef"><b>Definition:</b> Delay.h:34</div></div>
 </div><!-- fragment --><p>For large and slow code, you need to manually update the timer after executing large code.</p>
 <div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
 <div class="line"><span class="keywordflow">if</span> (eventDelay.isDone()) {</div>
@@ -606,7 +606,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Delay::setCallback </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Delay_8h.html#aba4e07ee7019198e04cb6e76c1dcc84f">CallbackFunction</a>&#160;</td>
+          <td class="paramtype">CallbackFunction&#160;</td>
           <td class="paramname"><em>fn</em></td><td>)</td>
           <td></td>
         </tr>

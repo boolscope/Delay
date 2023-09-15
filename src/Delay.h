@@ -2,10 +2,6 @@
  * @brief Provides a library for managing asynchronous delays and
  * timeouts in embedded systems.
  *
- * @file Delay.h
- *
- * @author boolscope
- * @version 1.2.0
  */
 #ifndef _DELAY_H
 #define _DELAY_H

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.2.0</span>
+   &#160;<span id="projectnumber">1.2.1</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -165,7 +165,7 @@ Sketch 2.</h3>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
 Sketch 3.</h3>
 <p>Using <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> allows you to focus on the implementation of the algorithm specifically for the application being developed, and not on delay control.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Delay_8h.html">Delay.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;Delay.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define LED_1_PIN 12</span></div>
 <div class="line"><span class="preprocessor">#define LED_2_PIN 11</span></div>
@@ -193,8 +193,7 @@ Sketch 3.</h3>
 <div class="line">    digitalWrite(LED_2_PIN, isLow ? HIGH : LOW);</div>
 <div class="line">  }</div>
 <div class="line">}</div>
-<div class="ttc" id="aDelay_8h_html"><div class="ttname"><a href="Delay_8h.html">Delay.h</a></div><div class="ttdoc">Provides a library for managing asynchronous delays and timeouts in embedded systems.</div></div>
-<div class="ttc" id="aclassDelay_html"><div class="ttname"><a href="classDelay.html">Delay</a></div><div class="ttdoc">This class facilitates creating non-blocking delays and timeouts.</div><div class="ttdef"><b>Definition:</b> Delay.h:38</div></div>
+<div class="ttc" id="aclassDelay_html"><div class="ttname"><a href="classDelay.html">Delay</a></div><div class="ttdoc">This class facilitates creating non-blocking delays and timeouts.</div><div class="ttdef"><b>Definition:</b> Delay.h:34</div></div>
 </div><!-- fragment --><p>In addition, the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> library allows you to determine, for example, whether the ready state was reached at least once <code>isNever()</code> method; whether it is an even/odd state of readiness of <code>isEven()</code> and <code>isOdd()</code> methods; the number of times the state of readiness was reached <code>getCount()</code> method, etc. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->

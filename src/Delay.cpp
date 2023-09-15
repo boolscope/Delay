@@ -9,9 +9,10 @@
  * @param[in] interval The delay time in milliseconds. Defaults to 0.
  * @param[in] isActive Indicates whether the timer is active.
  */
-Delay::Delay(unsigned long interval, bool isActive) {
-    this->isActive = isActive;
-    setInterval(interval);
+Delay::Delay(unsigned long interval = 0, bool isActive = true)
+    : interval(interval),
+      isActive(isActive),
+      timestamp(millis()) {
 }
 
 /**

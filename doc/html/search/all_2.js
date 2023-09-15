@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['enable_4',['enable',['../classDelay.html#a8405f31092fd33cf3f606fe7ec9f3414',1,'Delay']]],
-  ['execcallback_5',['execCallback',['../classDelay.html#a5409eb69c0ef50fab1e33341a201a7a9',1,'Delay']]]
+  ['getcallback_4',['getCallback',['../classDelay.html#a89110f2d0b73b811e07af03d7f9b3e2e',1,'Delay']]],
+  ['getcount_5',['getCount',['../classDelay.html#a2d8c63d74f364efff53e0faf6e17536b',1,'Delay']]],
+  ['getdelta_6',['getDelta',['../classDelay.html#ab9ba7d49967124692f339cf524044d79',1,'Delay']]],
+  ['getinterval_7',['getInterval',['../classDelay.html#a9f4174ea67c6ee7b01e31fc9695337e0',1,'Delay']]]
 ];
