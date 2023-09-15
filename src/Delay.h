@@ -56,6 +56,17 @@ private:
     unsigned long suspendTime = 0;
 
     /**
+     * @brief Stores the amount of time that has elapsed before the object was
+     * suspended.
+     *
+     * This variable holds the time in milliseconds that has passed from the
+     * start of the current interval to the moment the object is suspended via
+     * the suspend() method. It is used to resume the timer accurately once the
+     * suspend period is over.
+     */
+    unsigned long suspendDelta = 0;
+
+    /**
      * @brief Stores the callback function to be invoked when the
      * timer expires.
      *
@@ -123,18 +134,23 @@ public:
      * @brief Suspends the Delay object for a specified amount of time.
      *
      * This method suspends the Delay object for a specified amount of time
-     * (in milliseconds). The object will not become active until the
+     * (in milliseconds). The object will not become active again until the
      * specified amount of time has elapsed. Additionally, the timer's state
-     * is reset, and the interval will start anew after the suspendTime has
+     * is reset, and the interval will start anew after the suspend time has
      * elapsed.
-     *
-     * @note Calling suspend will reset the timer, effectively losing any time
-     * that has already elapsed towards the next interval.
      *
      * @param[in] suspendTime The amount of time to suspend the Delay object,
      * in milliseconds.
+     * @param[in] shouldContinue (Optional) If set to `true`, the timer will
+     * continue counting from where it left off before being suspended.
+     * If set to `false` (default), the timer will reset and count from
+     * the beginning of the interval after suspension.
+     *
+     * @note Calling suspend with `continue` set to `false` will reset the
+     * timer, effectively losing any time that has already elapsed towards
+     * the next interval.
      */
-    void suspend(unsigned long suspendTime);
+    void suspend(unsigned long suspendTime, bool shouldContinue = false);
 
     /**
      * @brief Configures the delay interval for the Delay object.

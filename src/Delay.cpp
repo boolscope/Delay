@@ -30,6 +30,7 @@ Delay::Delay(unsigned long interval = 0, bool isActive = true)
 void Delay::enable() {
     this->isActive = true;
     this->suspendTime = 0;
+    this->suspendDelta = 0;
     this->resetTime();
 }
 
@@ -46,24 +47,35 @@ void Delay::enable() {
 void Delay::disable() {
     this->isActive = false;
     this->suspendTime = 0;
+    this->suspendDelta = 0;
 }
 
 /**
  * @brief Suspends the Delay object for a specified amount of time.
  *
  * This method suspends the Delay object for a specified amount of time
- * (in milliseconds). The object will not become active until the
+ * (in milliseconds). The object will not become active again until the
  * specified amount of time has elapsed. Additionally, the timer's state
- * is reset, and the interval will start anew after the suspendTime has
+ * is reset, and the interval will start anew after the suspend time has
  * elapsed.
- *
- * @note Calling suspend will reset the timer, effectively losing any time
- * that has already elapsed towards the next interval.
  *
  * @param[in] suspendTime The amount of time to suspend the Delay object,
  * in milliseconds.
+ * @param[in] shouldContinue (Optional) If set to `true`, the timer will
+ * continue counting from where it left off before being suspended. If set to
+ * `false` (default), the timer will reset and count from the beginning of the
+ * interval after suspension.
+ *
+ * @note Calling suspend with `continue` set to `false` will reset the timer,
+ * effectively losing any time that has already elapsed towards the next
+ * interval.
  */
-void Delay::suspend(unsigned long suspendTime) {
+void Delay::suspend(unsigned long suspendTime, bool shouldContinue = false) {
+    // Save the time that the timer has already passed before calling the
+    // suspend method.
+    this->suspendDelta = shouldContinue ? this->getDelta() : 0;
+
+    // Set the suspend time and disable the timer.
     this->suspendTime = suspendTime;
     this->isActive = false;
     this->resetTime();
@@ -239,8 +251,9 @@ bool Delay::isDone() {
     }
 
     // If the object is active, then the count is incremented.
-    if (this->getDelta() >= this->interval) {
+    if (this->getDelta() >= (this->interval - this->suspendDelta)) {
         this->count++;
+        this->suspendDelta = 0;
         this->resetTime();
         return true;
     }
