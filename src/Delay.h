@@ -1,0 +1,259 @@
+/**
+ * @brief Provides a library for managing asynchronous delays and
+ * timeouts in embedded systems.
+ *
+ * @file Delay.h
+ *
+ * @author boolscope
+ * @version 1.0.0
+ */
+#ifndef _DELAY_H
+#define _DELAY_H
+
+// ULONG_MAX is not defined in Arduino.h,
+// so we use the value from limits.h
+#include <Arduino.h>
+#include <limits.h>
+
+/**
+ * @brief Type definition for a callback function with no arguments and no
+ * return value.
+ *
+ * This `CallbackFunction` type definition is used to represent a callback
+ * function that takes no arguments and has no return value. It is commonly
+ * employed when setting callback functions within the Delay class to execute
+ * specific actions when a timer expires.
+ */
+typedef void (*CallbackFunction)();
+
+/**
+ * @brief This class facilitates creating non-blocking delays and timeouts.
+ * @class Delay
+ *
+ * The Delay class allows you to create delays and timeouts that are
+ * non-blocking, meaning your program can perform other tasks while waiting.
+ * This improves the efficiency of the program, especially when running on
+ * a single-threaded microcontroller environment.
+ */
+class Delay {
+private:
+    /**
+     * @brief The number of times the Delay instance has been triggered.
+     */
+    unsigned long count = 0;
+
+    /**
+     * @brief The time interval (in milliseconds) after which the Delay
+     * object becomes ready.
+     */
+    unsigned long interval = 0;
+
+    /**
+     * @brief The last time (in milliseconds) the Delay object was
+     * triggered or initialized.
+     */
+    unsigned long timestamp = 0;
+
+    /**
+     * @brief Stores the callback function to be invoked when the
+     * timer expires.
+     *
+     * This member variable holds a pointer to a callback function that is
+     * invoked when the timer expires.
+     */
+    CallbackFunction callbackFunction = nullptr;
+
+public:
+    /**
+     * @brief Indicates whether the timer is active.
+     *
+     * The `isActive` flag is used to control the timer's activity status.
+     * When set to `true`, the timer is active and will trigger based on
+     * the configured delay interval. When set to `false`, the timer is
+     * inactive and will not trigger, regardless of the interval setting.
+     */
+    bool isActive = true;
+
+    /**
+     * @brief Constructs a new Delay object.
+     *
+     * Initializes a new Delay object and optionally sets the delay
+     * interval during object creation.
+     *
+     * @param[in] interval The delay time in milliseconds. Defaults to 0.
+     * @param[in] isActive Indicates whether the timer is active.
+     */
+    Delay(unsigned long interval = 0, bool isActive = true);
+
+    /**
+     * @brief Destructor.
+     *
+     * Destroys the Delay object, performing any necessary cleanup.
+     */
+    ~Delay() = default;
+
+    /**
+     * @brief Configures the delay interval for the Delay object.
+     *
+     * Sets the amount of time (in milliseconds) the Delay object
+     * will wait before transitioning to an active state.
+     *
+     * @param[in] interval The desired delay time in milliseconds.
+     */
+    void setInterval(unsigned long interval);
+
+    /**
+     * @brief Retrieves the configured delay interval of the Delay obj.
+     *
+     * Gets the amount of time (in milliseconds) that the Delay object
+     * will wait before becoming active.
+     *
+     * @return The configured delay time in milliseconds.
+     */
+    unsigned long getInterval();
+
+    /**
+     * @brief Sets the callback function for the timer.
+     *
+     * This method sets a callback function that will be invoked
+     * when the timer reaches the 'done' state.
+     *
+     * @param[in] fn The callback function.
+     */
+    void setCallback(CallbackFunction fn);
+
+    /**
+     * @brief Checks if a callback function is set.
+     *
+     * This method returns true if a callback function has been set
+     * for this timer.
+     *
+     * @return True if a callback function is set, false otherwise.
+     */
+    bool hasCallback();
+
+    /**
+     * @brief Retrieves the current callback function.
+     *
+     * This method returns the current callback function set for this timer.
+     *
+     * @return The current callback function.
+     */
+    CallbackFunction getCallback();
+
+    /** @brief Executes the callback function.
+     *
+     * This method executes the callback function if it is set.
+     *
+     * In any case (regardless of whether the callback is set or not), it
+     * performs the resetTime function.
+     *
+     * If you don't need to reset the timer after the callback is executed,
+     * use the `if' construct with the `isDone()` method.
+     *
+     * @return True if the callback function was executed, false otherwise.
+     */
+    bool execCallback();
+
+    /**
+     * @brief Resets the internal timestamp to the current time.
+     *
+     * Updates the internal timestamp with the current time from millis().
+     * This effectively resets any counting towards the next activation period.
+     *
+     * @return void
+     */
+    void resetTime();
+
+    /**
+     * @brief Calculates the time elapsed since the last reset.
+     *
+     * This function returns the difference, in milliseconds, between the
+     * current system time (as obtained by millis()) and the internal timestamp
+     * set by the last call to resetTime() or during object initialization.
+     * This can be useful for understanding how close the object is to
+     * transitioning to its 'ready' or 'done' state.
+     *
+     * @return The time difference in milliseconds.
+     */
+    unsigned long getDelta();
+
+    /**
+     * @brief Checks if the delay interval has expired.
+     *
+     * @retval true if the delay interval has expired.
+     * @retval false otherwise.
+     *
+     * This function will not return `true` if the `isActive` is `false`.
+     *
+     * This function automatically reset the timer when has the `true` status.
+     * This is useful when you have short and quick code that will be executed
+     * when a state is reached.
+     *
+     * @code
+     * Delay eventDelay(300);
+     * if (eventDelay.isDone()) {
+     *   // Short and quick code here...
+     * }
+     * @endcode
+     *
+     * For large and slow code, you need to manually update the timer after
+     * executing large code.
+     *
+     * @code
+     * Delay eventDelay(300);
+     * if (eventDelay.isDone()) {
+     *   // Long-running code here...
+     *   eventDelay.resetTime();  // manual reset
+     * }
+     * @endcode
+     */
+    bool isDone();
+
+    /**
+     * @brief Gets the number of times the object has become active.
+     *
+     * This function returns the count of times the object's delay interval
+     * has expired.
+     *
+     * @return The number of times the object has been active.
+     */
+    unsigned long getCount();
+
+    /**
+     * @brief Resets the activation count to zero.
+     *
+     * Resets the internal counter that keeps track of the number of times
+     * the object has become active.
+     *
+     * @return void
+     */
+    void resetCount();
+
+    /**
+     * @brief Checks if the object has been active an even number of times.
+     *
+     * @retval true If the internal counter is an even number.
+     * @retval false Otherwise, including when the counter is zero.
+     */
+    bool isEven();
+
+    /**
+     * @brief Checks if the object has been active an odd number of times.
+     *
+     * @retval true If the internal counter is an odd number.
+     * @retval false Otherwise, including when the counter is zero.
+     */
+    bool isOdd();
+
+    /**
+     * @brief Checks if the object has never been active.
+     *
+     * @retval true If the internal counter is zero, indicating the object
+     * has never been ready.
+     * @retval false otherwise.
+     */
+    bool isNever();
+};
+
+#endif  // _DELAY_H
