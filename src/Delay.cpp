@@ -15,6 +15,26 @@ Delay::Delay(unsigned long interval, bool isActive) {
 }
 
 /**
+ * @brief Enables the Delay object.
+ *
+ * Sets the `isActive` flag to `true`, enabling the Delay object,
+ * and run resetTime() method.
+ */
+void Delay::enable() {
+    this->isActive = true;
+    this->resetTime();
+}
+
+/**
+ * @brief Disables the Delay object.
+ *
+ * Sets the `isActive` flag to `false`, disabling the Delay object.
+ */
+void Delay::disable() {
+    this->isActive = false;
+}
+
+/**
  * @brief Sets the delay interval for the Delay object and resets the
  * timer.
  *
@@ -89,24 +109,18 @@ CallbackFunction Delay::getCallback() {
 /**
  * @brief Executes the callback function.
  *
- * This method executes the callback function if it is set.
- *
- * In any case (regardless of whether the callback is set or not),
- * it performs the resetTime function.
- *
- * If you don't need to reset the timer after the callback is executed,
- * use the `if' construct with the `isDone()` method.
+ * This method executes the callback function if it is set and the timer
+ * has reached or exceeded the specified delay interval.
  *
  * @return `true` if the callback function was executed, `false` otherwise.
  */
 bool Delay::execCallback() {
     bool result = false;
-    if (this->isActive && this->hasCallback()) {
+    if (this->isActive && this->hasCallback() && this->isDone()) {
         this->callbackFunction();
         result = true;
     }
 
-    this->resetTime();
     return result;
 }
 

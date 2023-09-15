@@ -93,6 +93,21 @@ public:
     ~Delay() = default;
 
     /**
+     * @brief Enables the Delay object.
+     *
+     * Sets the `isActive` flag to `true`, enabling the Delay object,
+     * and run resetTime() method.
+     */
+    void enable();
+
+    /**
+     * @brief Disables the Delay object.
+     *
+     * Sets the `isActive` flag to `false`, disabling the Delay object.
+     */
+    void disable();
+
+    /**
      * @brief Configures the delay interval for the Delay object.
      *
      * Sets the amount of time (in milliseconds) the Delay object
@@ -143,13 +158,8 @@ public:
 
     /** @brief Executes the callback function.
      *
-     * This method executes the callback function if it is set.
-     *
-     * In any case (regardless of whether the callback is set or not), it
-     * performs the resetTime function.
-     *
-     * If you don't need to reset the timer after the callback is executed,
-     * use the `if' construct with the `isDone()` method.
+     * This method executes the callback function if it is set and the timer
+     * has reached or exceeded the specified delay interval.
      *
      * @return True if the callback function was executed, false otherwise.
      */
