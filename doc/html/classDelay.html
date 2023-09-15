@@ -12,7 +12,8 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<link href="awesome.css" rel="stylesheet" type="text/css" />
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -22,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.0.0</span>
+   &#160;<span id="projectnumber">1.2.0</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -86,11 +87,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a21747e7bb329265a3c10dd0eacad5075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classDelay.html#a21747e7bb329265a3c10dd0eacad5075">More...</a><br /></td></tr>
 <tr class="separator:a21747e7bb329265a3c10dd0eacad5075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8405f31092fd33cf3f606fe7ec9f3414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a8405f31092fd33cf3f606fe7ec9f3414">enable</a> ()</td></tr>
-<tr class="memdesc:a8405f31092fd33cf3f606fe7ec9f3414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object.  <a href="classDelay.html#a8405f31092fd33cf3f606fe7ec9f3414">More...</a><br /></td></tr>
+<tr class="memdesc:a8405f31092fd33cf3f606fe7ec9f3414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object and cancels any active suspend state.  <a href="classDelay.html#a8405f31092fd33cf3f606fe7ec9f3414">More...</a><br /></td></tr>
 <tr class="separator:a8405f31092fd33cf3f606fe7ec9f3414"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ee285f503b729c010c0bb3dd399ef10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a1ee285f503b729c010c0bb3dd399ef10">disable</a> ()</td></tr>
-<tr class="memdesc:a1ee285f503b729c010c0bb3dd399ef10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object.  <a href="classDelay.html#a1ee285f503b729c010c0bb3dd399ef10">More...</a><br /></td></tr>
+<tr class="memdesc:a1ee285f503b729c010c0bb3dd399ef10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object and cancels any active suspend state.  <a href="classDelay.html#a1ee285f503b729c010c0bb3dd399ef10">More...</a><br /></td></tr>
 <tr class="separator:a1ee285f503b729c010c0bb3dd399ef10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00b223bf8af16d6883c5e0acf64a4b49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a00b223bf8af16d6883c5e0acf64a4b49">suspend</a> (unsigned long suspendTime)</td></tr>
+<tr class="memdesc:a00b223bf8af16d6883c5e0acf64a4b49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suspends the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object for a specified amount of time.  <a href="classDelay.html#a00b223bf8af16d6883c5e0acf64a4b49">More...</a><br /></td></tr>
+<tr class="separator:a00b223bf8af16d6883c5e0acf64a4b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac71ea5e51f601681190e2b043ba7f603"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#ac71ea5e51f601681190e2b043ba7f603">setInterval</a> (unsigned long interval)</td></tr>
 <tr class="memdesc:ac71ea5e51f601681190e2b043ba7f603"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures the delay interval for the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object.  <a href="classDelay.html#ac71ea5e51f601681190e2b043ba7f603">More...</a><br /></td></tr>
 <tr class="separator:ac71ea5e51f601681190e2b043ba7f603"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,8 +239,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Disables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object. </p>
-<p>Sets the <code>isActive</code> flag to <code>false</code>, disabling the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object. </p>
+<p>Disables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object and cancels any active suspend state. </p>
+<p>This method sets the <code>isActive</code> flag to <code>false</code>, thereby disabling the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object. Additionally, any active suspend state is cancelled, and the <code>suspendTime</code> is set to 0.</p>
+<dl class="section note"><dt>Note</dt><dd>If the object is in a suspended state when this method is called, the suspend state will be cancelled, but the timer will remain disabled. </dd></dl>
 
 </div>
 </div>
@@ -255,8 +260,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object. </p>
-<p>Sets the <code>isActive</code> flag to <code>true</code>, enabling the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object, and run <a class="el" href="classDelay.html#af77f80ed92b4dab128715631dc798421" title="Resets the internal timestamp to the current time.">resetTime()</a> method. </p>
+<p>Enables the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object and cancels any active suspend state. </p>
+<p>This method sets the <code>isActive</code> flag to <code>true</code>, thereby enabling the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object. It also calls the <a class="el" href="classDelay.html#af77f80ed92b4dab128715631dc798421" title="Resets the internal timestamp to the current time.">resetTime()</a> method to reset the timer to the current system time. Additionally, any active suspend state is cancelled, and the <code>suspendTime</code> is set to 0.</p>
+<dl class="section note"><dt>Note</dt><dd>If the object is in a suspended state when this method is called, the suspend state will be cancelled, and the timer will immediately become active. </dd></dl>
 
 </div>
 </div>
@@ -655,6 +661,34 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">interval</td><td>The new delay time in milliseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a00b223bf8af16d6883c5e0acf64a4b49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b223bf8af16d6883c5e0acf64a4b49">&#9670;&nbsp;</a></span>suspend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Delay::suspend </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>suspendTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Suspends the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object for a specified amount of time. </p>
+<p>This method suspends the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object for a specified amount of time (in milliseconds). The object will not become active until the specified amount of time has elapsed. Additionally, the timer's state is reset, and the interval will start anew after the suspendTime has elapsed.</p>
+<dl class="section note"><dt>Note</dt><dd>Calling suspend will reset the timer, effectively losing any time that has already elapsed towards the next interval.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">suspendTime</td><td>The amount of time to suspend the <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object, in milliseconds. </td></tr>
   </table>
   </dd>
 </dl>

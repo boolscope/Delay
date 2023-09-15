@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['setcallback_38',['setCallback',['../classDelay.html#a0babe9750112eb23328d803db1b365e1',1,'Delay']]],
-  ['setinterval_39',['setInterval',['../classDelay.html#ac71ea5e51f601681190e2b043ba7f603',1,'Delay']]]
+  ['setcallback_39',['setCallback',['../classDelay.html#a0babe9750112eb23328d803db1b365e1',1,'Delay']]],
+  ['setinterval_40',['setInterval',['../classDelay.html#ac71ea5e51f601681190e2b043ba7f603',1,'Delay']]],
+  ['suspend_41',['suspend',['../classDelay.html#a00b223bf8af16d6883c5e0acf64a4b49',1,'Delay']]]
 ];

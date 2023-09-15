@@ -5,7 +5,7 @@
  * @file Delay.h
  *
  * @author boolscope
- * @version 1.0.0
+ * @version 1.2.0
  */
 #ifndef _DELAY_H
 #define _DELAY_H
@@ -55,6 +55,11 @@ private:
     unsigned long timestamp = 0;
 
     /**
+     * @brief The time (in milliseconds) the Delay object was suspended.
+     */
+    unsigned long suspendTime = 0;
+
+    /**
      * @brief Stores the callback function to be invoked when the
      * timer expires.
      *
@@ -93,19 +98,47 @@ public:
     ~Delay() = default;
 
     /**
-     * @brief Enables the Delay object.
+     * @brief Enables the Delay object and cancels any active suspend state.
      *
-     * Sets the `isActive` flag to `true`, enabling the Delay object,
-     * and run resetTime() method.
+     * This method sets the `isActive` flag to `true`, thereby enabling the
+     * Delay object. It also calls the resetTime() method to reset the timer
+     * to the current system time. Additionally, any active suspend state is
+     * cancelled, and the `suspendTime` is set to 0.
+     *
+     * @note If the object is in a suspended state when this method is called,
+     * the suspend state will be cancelled, and the timer will immediately
+     * become active.
      */
     void enable();
 
     /**
-     * @brief Disables the Delay object.
+     * @brief Disables the Delay object and cancels any active suspend state.
      *
-     * Sets the `isActive` flag to `false`, disabling the Delay object.
+     * This method sets the `isActive` flag to `false`, thereby disabling the
+     * Delay object. Additionally, any active suspend state is cancelled, and
+     * the `suspendTime` is set to 0.
+     *
+     * @note If the object is in a suspended state when this method is called,
+     * the suspend state will be cancelled, but the timer will remain disabled.
      */
     void disable();
+
+    /**
+     * @brief Suspends the Delay object for a specified amount of time.
+     *
+     * This method suspends the Delay object for a specified amount of time
+     * (in milliseconds). The object will not become active until the
+     * specified amount of time has elapsed. Additionally, the timer's state
+     * is reset, and the interval will start anew after the suspendTime has
+     * elapsed.
+     *
+     * @note Calling suspend will reset the timer, effectively losing any time
+     * that has already elapsed towards the next interval.
+     *
+     * @param[in] suspendTime The amount of time to suspend the Delay object,
+     * in milliseconds.
+     */
+    void suspend(unsigned long suspendTime);
 
     /**
      * @brief Configures the delay interval for the Delay object.

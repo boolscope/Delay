@@ -15,23 +15,57 @@ Delay::Delay(unsigned long interval, bool isActive) {
 }
 
 /**
- * @brief Enables the Delay object.
+ * @brief Enables the Delay object and cancels any active suspend state.
  *
- * Sets the `isActive` flag to `true`, enabling the Delay object,
- * and run resetTime() method.
+ * This method sets the `isActive` flag to `true`, thereby enabling the
+ * Delay object. It also calls the resetTime() method to reset the timer
+ * to the current system time. Additionally, any active suspend state is
+ * cancelled, and the `suspendTime` is set to 0.
+ *
+ * @note If the object is in a suspended state when this method is called,
+ * the suspend state will be cancelled, and the timer will immediately
+ * become active.
  */
 void Delay::enable() {
     this->isActive = true;
+    this->suspendTime = 0;
     this->resetTime();
 }
 
 /**
- * @brief Disables the Delay object.
+ * @brief Disables the Delay object and cancels any active suspend state.
  *
- * Sets the `isActive` flag to `false`, disabling the Delay object.
+ * This method sets the `isActive` flag to `false`, thereby disabling the Delay
+ * object. Additionally, any active suspend state is cancelled, and the
+ * `suspendTime` is set to 0.
+ *
+ * @note If the object is in a suspended state when this method is called, the
+ * suspend state will be cancelled, but the timer will remain disabled.
  */
 void Delay::disable() {
     this->isActive = false;
+    this->suspendTime = 0;
+}
+
+/**
+ * @brief Suspends the Delay object for a specified amount of time.
+ *
+ * This method suspends the Delay object for a specified amount of time
+ * (in milliseconds). The object will not become active until the
+ * specified amount of time has elapsed. Additionally, the timer's state
+ * is reset, and the interval will start anew after the suspendTime has
+ * elapsed.
+ *
+ * @note Calling suspend will reset the timer, effectively losing any time
+ * that has already elapsed towards the next interval.
+ *
+ * @param[in] suspendTime The amount of time to suspend the Delay object,
+ * in milliseconds.
+ */
+void Delay::suspend(unsigned long suspendTime) {
+    this->suspendTime = suspendTime;
+    this->isActive = false;
+    this->resetTime();
 }
 
 /**
@@ -189,8 +223,17 @@ unsigned long Delay::getDelta() {
  * `false` otherwise.
  */
 bool Delay::isDone() {
-    // If the interval is set to zero, the "ready" state can never occur.
-    if (!this->isActive) {
+    if (!this->isActive && this->suspendTime == 0) {
+        // If disabled and suspend time is 0, then the object is never done.
+        return false;
+    } else if (!this->isActive && this->suspendTime != 0) {
+        // If disabled and suspend time is not 0, then the object is done
+        // when the suspend time has elapsed.
+        if (this->getDelta() >= this->suspendTime) {
+            this->enable();
+        }
+
+        // Returns false because only the suspend time ended.
         return false;
     }
 
