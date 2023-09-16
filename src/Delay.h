@@ -234,20 +234,48 @@ public:
     unsigned long getDelta();
 
     /**
-     * @brief Checks if the delay interval has expired.
+     * @brief Checks if the delay interval has been reached or exceeded.
      *
-     * @retval true if the delay interval has expired.
-     * @retval false otherwise.
+     * This function does not automatically reset the timer when time over.
+     * This is useful when you have a situation to leave the timer "open" after
+     * the first event. The timer can be manually reset using the `resetTime`
+     * method.
      *
-     * This function will not return `true` if the `isActive` is `false`.
+     * @code
+     * Delay eventDelay(300);
+     * if (eventDelay.isOver()) {
+     *   // This code will be available continuously in all
+     *   // iterations of the loop until `resetTime` is done.
+     * }
+     * @endcode
      *
-     * This function automatically reset the timer when has the `true` status.
+     * The timer can be reset at the time you want.
+     *
+     * @code
+     * Delay eventDelay(300);
+     * if (eventDelay.isOver()) {
+     *   // Long-running code here...
+     *   eventDelay.resetTime();  // manual reset
+     * }
+     * @endcode
+     *
+     * @note Never returns true if the `isActive` is `false`.
+     *
+     * @return `true` if the delay interval is reached or exceeded,
+     * `false` otherwise.
+     */
+    bool isOver();
+
+    /**
+     * @brief Checks if the delay interval has been reached or exceeded.
+     *
+     * * This function automatically reset the timer when has the `true` status.
      * This is useful when you have short and quick code that will be executed
      * when a state is reached.
      *
      * @code
      * Delay eventDelay(300);
-     * if (eventDelay.isOver()) {
+     * if (eventDelay.isDone()) {
      *   // Short and quick code here...
      * }
      * @endcode
@@ -257,14 +285,17 @@ public:
      *
      * @code
      * Delay eventDelay(300);
-     * if (eventDelay.isOver()) {
+     * if (eventDelay.isDone()) {
      *   // Long-running code here...
      *   eventDelay.resetTime();  // manual reset
      * }
      * @endcode
+     *
+     * @note Never returns true if the `isActive` is `false`.
+     *
+     * @return `true` if the delay interval is reached or exceeded,
+     * `false` otherwise.
      */
-    bool isOver();
-
     bool isDone();
 
     /**

@@ -254,7 +254,6 @@ bool Delay::isOver() {
     if (this->getDelta() >= (this->interval - this->suspendDelta)) {
         this->count++;
         this->suspendDelta = 0;
-        this->resetTime();
         return true;
     }
 
