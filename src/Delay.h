@@ -93,9 +93,11 @@ public:
      * interval during object creation.
      *
      * @param[in] interval The delay time in milliseconds. Defaults to 0.
-     * @param[in] isActive Indicates whether the timer is active.
+     * @param[in] isOver If `true` then the first call to `isDone()` or
+     * `isOver()` will return `true`. Default is `false` - the first call
+     * to `isDone()` or `isOver()` will be `true` if the interval runs out.
      */
-    Delay(unsigned long interval = 0, bool isActive = true);
+    Delay(unsigned long interval = 0, bool isOver = false);
 
     /**
      * @brief Destructor.

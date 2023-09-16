@@ -7,12 +7,26 @@
  * interval as well as resetting the internal timestamp.
  *
  * @param[in] interval The delay time in milliseconds. Defaults to 0.
- * @param[in] isActive Indicates whether the timer is active.
+ * @param[in] isOver If `true` then the first call to `isDone()` or
+ * `isOver()` will return `true`. Default is `false` - the first call
+ * to `isDone()` or `isOver()` will be `true` if the interval runs out.
  */
-Delay::Delay(unsigned long interval = 0, bool isActive = true)
-    : interval(interval),
-      isActive(isActive),
+Delay::Delay(unsigned long interval = 0, bool isOver = false)
+    : isActive(true),
       timestamp(millis()) {
+    // Initialize.
+    this->setInterval(interval);
+    if (isOver) {
+        // The isOver method has an end-of-interval check, like so:
+        // this->getDelta() >= (this->interval - this->suspendDelta)
+        //
+        // - on timer startup getDelta() will return 0, millis() will
+        // return 0 too, and to avoid creating a temp variable for store
+        // original interval value and setting interval to 0, we can null
+        // the right side of expresion by setting suspendDelta equal to
+        // interval.
+        this->suspendDelta = this->interval;
+    }
 }
 
 /**

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.4.2</span>
+   &#160;<span id="projectnumber">1.5.0</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -80,9 +80,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1943975da61fd21ecfbe754f4ebd879a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a1943975da61fd21ecfbe754f4ebd879a">Delay</a> (unsigned long interval=0, bool <a class="el" href="classDelay.html#a449b030775d3cd9d6d02e113c43daad6">isActive</a>=true)</td></tr>
-<tr class="memdesc:a1943975da61fd21ecfbe754f4ebd879a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object.  <a href="classDelay.html#a1943975da61fd21ecfbe754f4ebd879a">More...</a><br /></td></tr>
-<tr class="separator:a1943975da61fd21ecfbe754f4ebd879a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a836c95cd7e0cbd7f59e1ff1a72830381"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a836c95cd7e0cbd7f59e1ff1a72830381">Delay</a> (unsigned long interval=0, bool <a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50">isOver</a>=false)</td></tr>
+<tr class="memdesc:a836c95cd7e0cbd7f59e1ff1a72830381"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> object.  <a href="classDelay.html#a836c95cd7e0cbd7f59e1ff1a72830381">More...</a><br /></td></tr>
+<tr class="separator:a836c95cd7e0cbd7f59e1ff1a72830381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21747e7bb329265a3c10dd0eacad5075"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a21747e7bb329265a3c10dd0eacad5075">~Delay</a> ()=default</td></tr>
 <tr class="memdesc:a21747e7bb329265a3c10dd0eacad5075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classDelay.html#a21747e7bb329265a3c10dd0eacad5075">More...</a><br /></td></tr>
 <tr class="separator:a21747e7bb329265a3c10dd0eacad5075"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,8 +151,8 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>This class facilitates creating non-blocking delays and timeouts. </p>
 <p>The <a class="el" href="classDelay.html" title="This class facilitates creating non-blocking delays and timeouts.">Delay</a> class allows you to create delays and timeouts that are non-blocking, meaning your program can perform other tasks while waiting. This improves the efficiency of the program, especially when running on a single-threaded microcontroller environment. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a1943975da61fd21ecfbe754f4ebd879a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1943975da61fd21ecfbe754f4ebd879a">&#9670;&nbsp;</a></span>Delay()</h2>
+<a id="a836c95cd7e0cbd7f59e1ff1a72830381"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a836c95cd7e0cbd7f59e1ff1a72830381">&#9670;&nbsp;</a></span>Delay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +167,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>isActive</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>isOver</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -183,7 +183,7 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">interval</td><td>The delay time in milliseconds. Defaults to 0. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">isActive</td><td>Indicates whether the timer is active.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">isOver</td><td>If <code>true</code> then the first call to <code><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c" title="Checks if the delay interval has been reached or exceeded.">isDone()</a></code> or <code><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50" title="Checks if the delay interval has been reached or exceeded.">isOver()</a></code> will return <code>true</code>. Default is <code>false</code> - the first call to <code><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c" title="Checks if the delay interval has been reached or exceeded.">isDone()</a></code> or <code><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50" title="Checks if the delay interval has been reached or exceeded.">isOver()</a></code> will be <code>true</code> if the interval runs out.</td></tr>
   </table>
   </dd>
 </dl>
@@ -191,7 +191,7 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">interval</td><td>The delay time in milliseconds. Defaults to 0. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">isActive</td><td>Indicates whether the timer is active. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">isOver</td><td>If <code>true</code> then the first call to <code><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c" title="Checks if the delay interval has been reached or exceeded.">isDone()</a></code> or <code><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50" title="Checks if the delay interval has been reached or exceeded.">isOver()</a></code> will return <code>true</code>. Default is <code>false</code> - the first call to <code><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c" title="Checks if the delay interval has been reached or exceeded.">isDone()</a></code> or <code><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50" title="Checks if the delay interval has been reached or exceeded.">isOver()</a></code> will be <code>true</code> if the interval runs out. </td></tr>
   </table>
   </dd>
 </dl>
