@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.5.0</span>
+   &#160;<span id="projectnumber">1.5.1</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -609,7 +609,9 @@ Public Attributes</h2></td></tr>
 <p>Resets the internal timestamp to the current system time.</p>
 <p>Updates the internal timestamp with the current time from millis(). This effectively resets any counting towards the next activation period.</p>
 <dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
-<p>This method updates the internal timestamp to the current system time, effectively resetting the timer. </p>
+<dl class="section note"><dt>Note</dt><dd>This method does not reset the suspend time but reset suspend delta - that is, if the <a class="el" href="classDelay.html#ac10746a9c405778a5c1953bfca7b17cd" title="Suspends the Delay object for a specified amount of time.">suspend()</a> method was called with the shouldContinue == true, it will be ignored when the suspend state is completed.</dd></dl>
+<p>This method updates the internal timestamp to the current system time, effectively resetting the timer.</p>
+<dl class="section note"><dt>Note</dt><dd>This method does not reset the suspend time but reset suspend delta - that is, if the <a class="el" href="classDelay.html#ac10746a9c405778a5c1953bfca7b17cd" title="Suspends the Delay object for a specified amount of time.">suspend()</a> method was called with the shouldContinue == true, it will be ignored when the suspend state is completed. </dd></dl>
 
 </div>
 </div>

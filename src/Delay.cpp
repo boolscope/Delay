@@ -190,9 +190,14 @@ bool Delay::execCallback() {
  *
  * This method updates the internal timestamp to the current system time,
  * effectively resetting the timer.
+ *
+ * @note This method does not reset the suspend time but reset suspend delta -
+ * that is, if the suspend() method was called with the shouldContinue == true,
+ * it will be ignored when the suspend state is completed.
  */
 void Delay::resetTime() {
     this->timestamp = millis();
+    this->suspendDelta = 0;
 }
 
 /**

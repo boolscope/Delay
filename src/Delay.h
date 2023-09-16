@@ -219,6 +219,11 @@ public:
      * This effectively resets any counting towards the next activation period.
      *
      * @return void
+     *
+     * @note This method does not reset the suspend time but reset suspend
+     * delta - that is, if the suspend() method was called with the
+     * shouldContinue == true, it will be ignored when the suspend
+     * state is completed.
      */
     void resetTime();
 
