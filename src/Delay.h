@@ -247,7 +247,7 @@ public:
      *
      * @code
      * Delay eventDelay(300);
-     * if (eventDelay.isDone()) {
+     * if (eventDelay.isOver()) {
      *   // Short and quick code here...
      * }
      * @endcode
@@ -257,12 +257,14 @@ public:
      *
      * @code
      * Delay eventDelay(300);
-     * if (eventDelay.isDone()) {
+     * if (eventDelay.isOver()) {
      *   // Long-running code here...
      *   eventDelay.resetTime();  // manual reset
      * }
      * @endcode
      */
+    bool isOver();
+
     bool isDone();
 
     /**

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.4.0</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -119,8 +119,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab9ba7d49967124692f339cf524044d79"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#ab9ba7d49967124692f339cf524044d79">getDelta</a> ()</td></tr>
 <tr class="memdesc:ab9ba7d49967124692f339cf524044d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the time elapsed since the last reset.  <a href="classDelay.html#ab9ba7d49967124692f339cf524044d79">More...</a><br /></td></tr>
 <tr class="separator:ab9ba7d49967124692f339cf524044d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7763ccdfb69dbd48cee941280e820e50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50">isOver</a> ()</td></tr>
+<tr class="memdesc:a7763ccdfb69dbd48cee941280e820e50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the delay interval has expired.  <a href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50">More...</a><br /></td></tr>
+<tr class="separator:a7763ccdfb69dbd48cee941280e820e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a727b672c6bb269acaeee65666fe1582c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c">isDone</a> ()</td></tr>
-<tr class="memdesc:a727b672c6bb269acaeee65666fe1582c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the delay interval has expired.  <a href="classDelay.html#a727b672c6bb269acaeee65666fe1582c">More...</a><br /></td></tr>
+<tr class="memdesc:a727b672c6bb269acaeee65666fe1582c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the delay interval has been reached or exceeded.  <a href="classDelay.html#a727b672c6bb269acaeee65666fe1582c">More...</a><br /></td></tr>
 <tr class="separator:a727b672c6bb269acaeee65666fe1582c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d8c63d74f364efff53e0faf6e17536b"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDelay.html#a2d8c63d74f364efff53e0faf6e17536b">getCount</a> ()</td></tr>
 <tr class="memdesc:a2d8c63d74f364efff53e0faf6e17536b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of times the object has become active.  <a href="classDelay.html#a2d8c63d74f364efff53e0faf6e17536b">More...</a><br /></td></tr>
@@ -331,7 +334,7 @@ Public Attributes</h2></td></tr>
 <p>Retrieves the count of times the object has been active.</p>
 <p>This function returns the count of times the object's delay interval has expired.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of times the object has been active.</dd></dl>
-<p>This method returns the number of times the object's timer has reached or exceeded the specified delay interval. Essentially, it tells you how many times either <code><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c" title="Checks if the delay interval has expired.">isDone()</a></code> or <code>isCompleted()</code> has returned <code>true</code>.</p>
+<p>This method returns the number of times the object's timer has reached or exceeded the specified delay interval. Essentially, it tells you how many times either <code><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50" title="Checks if the delay interval has expired.">isOver()</a></code> or <code>isCompleted()</code> has returned <code>true</code>.</p>
 <dl class="section return"><dt>Returns</dt><dd>The count of times the object has been active. </dd></dl>
 
 </div>
@@ -424,35 +427,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the delay interval has expired. </p>
-<p>Checks if the delay interval has been reached or exceeded.</p>
-<dl class="retval"><dt>Return values</dt><dd>
-  <table class="retval">
-    <tr><td class="paramname">true</td><td>if the delay interval has expired. </td></tr>
-    <tr><td class="paramname">false</td><td>otherwise.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>This function will not return <code>true</code> if the <code>isActive</code> is <code>false</code>.</p>
-<p>This function automatically reset the timer when has the <code>true</code> status. This is useful when you have short and quick code that will be executed when a state is reached.</p>
-<div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
-<div class="line"><span class="keywordflow">if</span> (eventDelay.isDone()) {</div>
-<div class="line">  <span class="comment">// Short and quick code here...</span></div>
-<div class="line">}</div>
-<div class="ttc" id="aclassDelay_html"><div class="ttname"><a href="classDelay.html">Delay</a></div><div class="ttdoc">This class facilitates creating non-blocking delays and timeouts.</div><div class="ttdef"><b>Definition:</b> Delay.h:34</div></div>
-</div><!-- fragment --><p>For large and slow code, you need to manually update the timer after executing large code.</p>
-<div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
-<div class="line"><span class="keywordflow">if</span> (eventDelay.isDone()) {</div>
-<div class="line">  <span class="comment">// Long-running code here...</span></div>
-<div class="line">  eventDelay.resetTime();  <span class="comment">// manual reset</span></div>
-<div class="line">}</div>
-</div><!-- fragment --><ul>
+<p>Checks if the delay interval has been reached or exceeded. </p>
+<ul>
 <li>This function automatically reset the timer when has the <code>true</code> status. This is useful when you have short and quick code that will be executed when a state is reached.</li>
 </ul>
 <div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
 <div class="line"><span class="keywordflow">if</span> (eventDelay.isDone()) {</div>
 <div class="line">  <span class="comment">// Short and quick code here...</span></div>
 <div class="line">}</div>
+<div class="ttc" id="aclassDelay_html"><div class="ttname"><a href="classDelay.html">Delay</a></div><div class="ttdoc">This class facilitates creating non-blocking delays and timeouts.</div><div class="ttdef"><b>Definition:</b> Delay.h:34</div></div>
 </div><!-- fragment --><p>For large and slow code, you need to manually update the timer after executing large code.</p>
 <div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
 <div class="line"><span class="keywordflow">if</span> (eventDelay.isDone()) {</div>
@@ -552,6 +535,59 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a7763ccdfb69dbd48cee941280e820e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7763ccdfb69dbd48cee941280e820e50">&#9670;&nbsp;</a></span>isOver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Delay::isOver </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the delay interval has expired. </p>
+<p>Checks if the delay interval has been reached or exceeded.</p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>if the delay interval has expired. </td></tr>
+    <tr><td class="paramname">false</td><td>otherwise.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function will not return <code>true</code> if the <code>isActive</code> is <code>false</code>.</p>
+<p>This function automatically reset the timer when has the <code>true</code> status. This is useful when you have short and quick code that will be executed when a state is reached.</p>
+<div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
+<div class="line"><span class="keywordflow">if</span> (eventDelay.isOver()) {</div>
+<div class="line">  <span class="comment">// Short and quick code here...</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>For large and slow code, you need to manually update the timer after executing large code.</p>
+<div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
+<div class="line"><span class="keywordflow">if</span> (eventDelay.isOver()) {</div>
+<div class="line">  <span class="comment">// Long-running code here...</span></div>
+<div class="line">  eventDelay.resetTime();  <span class="comment">// manual reset</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>This function does not automatically reset the timer when time over. This is useful when you have a situation to leave the timer "open" after the first event. The timer can be manually reset using the <code>resetTime</code> method.</p>
+<div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
+<div class="line"><span class="keywordflow">if</span> (eventDelay.isOver()) {</div>
+<div class="line">  <span class="comment">// This code will be available continuously in all</span></div>
+<div class="line">  <span class="comment">// iterations of the loop until `resetTime` is done.</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><p>The timer can be reset at the time you want.</p>
+<div class="fragment"><div class="line"><a class="code" href="classDelay.html">Delay</a> eventDelay(300);</div>
+<div class="line"><span class="keywordflow">if</span> (eventDelay.isOver()) {</div>
+<div class="line">  <span class="comment">// Long-running code here...</span></div>
+<div class="line">  eventDelay.resetTime();  <span class="comment">// manual reset</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Never returns true if the <code>isActive</code> is <code>false</code>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the delay interval is reached or exceeded, <code>false</code> otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="a47853eefc984c2d487b27588ddc0ee19"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47853eefc984c2d487b27588ddc0ee19">&#9670;&nbsp;</a></span>resetCount()</h2>
 
@@ -622,7 +658,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>The provided function will be called automatically when the method <code><a class="el" href="classDelay.html#a727b672c6bb269acaeee65666fe1582c" title="Checks if the delay interval has expired.">isDone()</a></code> returns true.</p>
+<p>The provided function will be called automatically when the method <code><a class="el" href="classDelay.html#a7763ccdfb69dbd48cee941280e820e50" title="Checks if the delay interval has expired.">isOver()</a></code> returns true.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">fn</td><td>The function to be called as a callback. </td></tr>

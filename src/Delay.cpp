@@ -120,7 +120,7 @@ unsigned long Delay::getInterval() {
  * interval is reached.
  *
  * The provided function will be called automatically when the method
- * `isDone()` returns true.
+ * `isOver()` returns true.
  *
  * @param[in] fn The function to be called as a callback.
  */
@@ -163,7 +163,7 @@ CallbackFunction Delay::getCallback() {
  */
 bool Delay::execCallback() {
     bool result = false;
-    if (this->isActive && this->hasCallback() && this->isDone()) {
+    if (this->isActive && this->hasCallback() && this->isOver()) {
         this->callbackFunction();
         result = true;
     }
@@ -208,6 +208,62 @@ unsigned long Delay::getDelta() {
 /**
  * @brief Checks if the delay interval has been reached or exceeded.
  *
+ * This function does not automatically reset the timer when time over.
+ * This is useful when you have a situation to leave the timer "open" after the
+ * first event. The timer can be manually reset using the `resetTime` method.
+ *
+ * @code
+ * Delay eventDelay(300);
+ * if (eventDelay.isOver()) {
+ *   // This code will be available continuously in all
+ *   // iterations of the loop until `resetTime` is done.
+ * }
+ * @endcode
+ *
+ * The timer can be reset at the time you want.
+ *
+ * @code
+ * Delay eventDelay(300);
+ * if (eventDelay.isOver()) {
+ *   // Long-running code here...
+ *   eventDelay.resetTime();  // manual reset
+ * }
+ * @endcode
+ *
+ * @note Never returns true if the `isActive` is `false`.
+ *
+ * @return `true` if the delay interval is reached or exceeded,
+ * `false` otherwise.
+ */
+bool Delay::isOver() {
+    if (!this->isActive && this->suspendTime == 0) {
+        // If disabled and suspend time is 0, then the object is never done.
+        return false;
+    } else if (!this->isActive && this->suspendTime != 0) {
+        // If disabled and suspend time is not 0, then the object is done
+        // when the suspend time has elapsed.
+        if (this->getDelta() >= this->suspendTime) {
+            this->enable();
+        }
+
+        // Returns false because only the suspend time ended.
+        return false;
+    }
+
+    // If the object is active, then the count is incremented.
+    if (this->getDelta() >= (this->interval - this->suspendDelta)) {
+        this->count++;
+        this->suspendDelta = 0;
+        this->resetTime();
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * @brief Checks if the delay interval has been reached or exceeded.
+ *
  * * This function automatically reset the timer when has the `true` status.
  * This is useful when you have short and quick code that will be executed
  * when a state is reached.
@@ -236,29 +292,12 @@ unsigned long Delay::getDelta() {
  * `false` otherwise.
  */
 bool Delay::isDone() {
-    if (!this->isActive && this->suspendTime == 0) {
-        // If disabled and suspend time is 0, then the object is never done.
-        return false;
-    } else if (!this->isActive && this->suspendTime != 0) {
-        // If disabled and suspend time is not 0, then the object is done
-        // when the suspend time has elapsed.
-        if (this->getDelta() >= this->suspendTime) {
-            this->enable();
-        }
-
-        // Returns false because only the suspend time ended.
-        return false;
-    }
-
-    // If the object is active, then the count is incremented.
-    if (this->getDelta() >= (this->interval - this->suspendDelta)) {
-        this->count++;
-        this->suspendDelta = 0;
+    bool result = this->isOver();
+    if (result) {
         this->resetTime();
-        return true;
     }
 
-    return false;
+    return result;
 }
 
 /**
@@ -266,7 +305,7 @@ bool Delay::isDone() {
  *
  * This method returns the number of times the object's timer has reached or
  * exceeded the specified delay interval. Essentially, it tells you how many
- * times either `isDone()` or `isCompleted()` has returned `true`.
+ * times either `isOver()` or `isCompleted()` has returned `true`.
  *
  * @return The count of times the object has been active.
  */

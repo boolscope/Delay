@@ -129,14 +129,14 @@ void setup() {
 void loop() {
   // Non-blocking way to blink LED_1_PIN,
   // similar to Sketch 2 but more readable.
-  if (led1Delay.isDone()) {
+  if (led1Delay.isOver()) {
     bool isLow = digitalRead(LED_1_PIN) == LOW;
     digitalWrite(LED_1_PIN, isLow ? HIGH : LOW);
   }
 
   // Non-blocking way to blink LED_2_PIN,
   // similar to Sketch 2 but more readable.
-  if (led2Delay.isDone()) {
+  if (led2Delay.isOver()) {
     bool isLow = digitalRead(LED_2_PIN) == LOW;
     digitalWrite(LED_2_PIN, isLow ? HIGH : LOW);
   }

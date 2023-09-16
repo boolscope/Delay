@@ -15,7 +15,7 @@ void setup() {
 
 void loop() {
   // Testing with continue == false (default).
-  if (resetDelay.isDone()) {
+  if (resetDelay.isOver()) {
     Serial.println("resetDelay is done. Suspend for 2000ms without continue.");
     unsigned long preSerialTime = millis();
     resetDelay.suspend(2000);
@@ -47,7 +47,7 @@ void loop() {
   }
 
   // Testing with continue == true.
-  if (continueDelay.isDone()) {
+  if (continueDelay.isOver()) {
     Serial.println("continueDelay is done. Suspend for 2000ms with continue.");
     unsigned long preSerialTime = millis();
     continueDelay.suspend(2000, true);

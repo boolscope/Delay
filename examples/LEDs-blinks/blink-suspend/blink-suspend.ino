@@ -26,12 +26,12 @@ void setup() {
 void loop() {
   // Each LED changes its state according to
   // the interval specified in its delay.
-  if (led1Delay.isDone()) {
+  if (led1Delay.isOver()) {
     toggleLed1();
     led1Delay.suspend(500); // x2 delay (1000ms.)
   }
 
-  if (led2Delay.isDone()) {
+  if (led2Delay.isOver()) {
     toggleLed2();
     led2Delay.suspend(750); // x2 delay (1500 ms.)
   }

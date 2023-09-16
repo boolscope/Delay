@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Delay
-   &#160;<span id="projectnumber">1.3.0</span>
+   &#160;<span id="projectnumber">1.4.0</span>
    </div>
    <div id="projectbrief">Provides a library for managing asynchronous delays and timeouts in microcontrollers.</div>
   </td>
@@ -181,14 +181,14 @@ Sketch 3.</h3>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">  <span class="comment">// Non-blocking way to blink LED_1_PIN,</span></div>
 <div class="line">  <span class="comment">// similar to Sketch 2 but more readable.</span></div>
-<div class="line">  <span class="keywordflow">if</span> (led1Delay.isDone()) {</div>
+<div class="line">  <span class="keywordflow">if</span> (led1Delay.isOver()) {</div>
 <div class="line">    <span class="keywordtype">bool</span> isLow = digitalRead(LED_1_PIN) == LOW;</div>
 <div class="line">    digitalWrite(LED_1_PIN, isLow ? HIGH : LOW);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Non-blocking way to blink LED_2_PIN,</span></div>
 <div class="line">  <span class="comment">// similar to Sketch 2 but more readable.</span></div>
-<div class="line">  <span class="keywordflow">if</span> (led2Delay.isDone()) {</div>
+<div class="line">  <span class="keywordflow">if</span> (led2Delay.isOver()) {</div>
 <div class="line">    <span class="keywordtype">bool</span> isLow = digitalRead(LED_2_PIN) == LOW;</div>
 <div class="line">    digitalWrite(LED_2_PIN, isLow ? HIGH : LOW);</div>
 <div class="line">  }</div>
